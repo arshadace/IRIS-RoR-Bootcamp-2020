@@ -37,5 +37,21 @@
 # We will raise an `ArgumentError` exception to let the caller know that
 # their function arguments were incorrect.
 def fizz_buzz(n:, x: 3, y: 5)
-  raise NotImplementedError # TODO
+  raise ArgumentError if n<0||x<=0||y<=0 
+  
+  l=[]
+  for i in 1..n
+    if i%x==0 && i%y==0
+      l.append("FizzBuzz")
+    elsif i%y==0 
+      l.append("Buzz")
+    elsif i%x==0 
+      l.append("Fizz")
+    else
+      l.append(i.to_s)
+    end
+  end
+  return l  
 end
+
+
