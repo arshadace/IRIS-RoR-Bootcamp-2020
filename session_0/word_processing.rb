@@ -38,11 +38,31 @@ end
 # The function `similarity_score` takes two words and returns the
 # similarity score (an integer).
 def similarity_score(word_1, word_2)
-  rand([word_1,word_2].min.size)
+  d=0
+  for i in 1..(word_1.length<word_2.length ? word_1.length: word_2.length)
+    if (word_1[i-1]==word_2[i-1])
+      d=d+1  
+    else
+      break
+    end
+  end  
+    return d
 end
 
 # Given a chosen word and an array of words, return an array of word(s)
 # with the maximum similarity score in the order they appear.
+
 def most_similar_words(chosen_word, words)
-  return words.map {|w| rand([w.size, chosen_word].min) }
+  d=[]
+  s=[]
+  for i in 1..words.length
+    s.append(similarity_score(words[i-1],chosen_word))
+  end
+  max=s.max()
+  for i in 1..words.length
+    if s[i-1]==max
+      d.append(words[i-1])
+    end
+  end
+  return d
 end
